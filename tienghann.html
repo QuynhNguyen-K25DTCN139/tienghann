@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Kiểm Tra Tiếng Hàn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #38a169;
+            --secondary-color: #3182ce;
+            --background-color: #f7fafc;
+            --card-background: #ffffff;
+            --text-color: #2d3748;
+            --heading-color: #1a202c;
+            --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            /* Đã thay đổi phông chữ sang Roboto để hỗ trợ tiếng Việt tốt hơn */
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-background);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-light);
+            max-width: 850px;
+            width: 100%;
+            margin: 1rem auto;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            text-align: center;
+            color: var(--heading-color);
+            font-weight: 600;
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section {
+            display: none;
+            padding: 2rem;
+            background-color: var(--background-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        #section1 {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: var(--heading-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2);
+        }
+        
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            background-color: var(--card-background);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 0;
+            color: var(--heading-color);
+        }
+
+        .options label {
+            display: block;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--background-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .options label:hover {
+            background-color: #e6fffa;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.75rem;
+            transform: scale(1.2);
+        }
+        
+        .button-group {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        
+        .button-group button {
+            padding: 0.75rem 2rem;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white;
+            margin: 0 0.5rem;
+        }
+
+        #startBtn {
+            background-color: var(--primary-color);
+        }
+
+        #startBtn:hover {
+            background-color: #2c8451;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        #submitBtn {
+            background-color: var(--secondary-color);
+        }
+
+        #submitBtn:hover {
+            background-color: #2b6cb0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        #showAnswersBtn {
+            background-color: #ecc94b;
+        }
+
+        #showAnswersBtn:hover {
+            background-color: #d69e2e;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn {
+            background-color: #48bb78;
+        }
+
+        .copy-btn:hover {
+            background-color: #38a169;
+            transform: translateY(-2px);
+        }
+
+        .evaluation-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            animation: fadeIn 1s;
+        }
+
+        .evaluation-text.good {
+            background-color: #48bb78;
+        }
+
+        .evaluation-text.average {
+            background-color: #ecc94b;
+        }
+
+        .evaluation-text.poor {
+            background-color: #e53e3e;
+        }
+
+        #results-container, #answers-container {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        #results-container {
+            background-color: #e6fffa;
+        }
+
+        #answers-container {
+            background-color: #fffaf0;
+        }
+        
+        #results-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+        
+        #results-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 1em;
+        }
+        
+        #results-list li:last-child {
+            border-bottom: none;
+        }
+
+        #results-list li.correct {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        #results-list li.incorrect {
+            color: #e53e3e;
+            font-weight: 500;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bài Kiểm Tra Tiếng Hàn</h1>
+        <p style="text-align: center; font-style: italic; color: var(--heading-color);">Chào mừng bạn đến với bài thi!</p>
+        
+        <div id="section1" class="section">
+            <h2>Phần 1: Nhập thông tin thí sinh</h2>
+            <div class="form-group">
+                <label for="name">Họ và tên:</label>
+                <input type="text" id="name" placeholder="Ví dụ: Nguyễn Văn A">
+            </div>
+            <div class="form-group">
+                <label for="age">Tuổi:</label>
+                <input type="number" id="age" placeholder="Ví dụ: 20">
+            </div>
+            <div class="button-group">
+                <button id="startBtn">Bắt đầu thi</button>
+            </div>
+        </div>
+
+        <div id="section2" class="section">
+            <h2>Phần 2: Bài thi</h2>
+            <p style="text-align: center;">Hãy hoàn thành 20 câu hỏi dưới đây:</p>
+            <form id="quizForm">
+                <div class="question">
+                    <p>1. 저는 한국어를 ( ) 싶어서 열심히 공부하고 있어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="배우는"> ① 배우는</label>
+                        <label><input type="radio" name="q1" value="배우고"> ② 배우고</label>
+                        <label><input type="radio" name="q1" value="배우기"> ③ 배우기</label>
+                        <label><input type="radio" name="q1" value="배우러"> ④ 배우러</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>2. 어제 너무 피곤해서 ( ) 잠이 들었어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="책을 읽었을 때"> ① 책을 읽었을 때</label>
+                        <label><input type="radio" name="q2" value="책을 읽다가"> ② 책을 읽다가</label>
+                        <label><input type="radio" name="q2" value="책을 읽고"> ③ 책을 읽고</label>
+                        <label><input type="radio" name="q2" value="책을 읽으면"> ④ 책을 읽으면</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>3. 비가 ( ) 우산을 가지고 가세요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="오니까"> ① 오니까</label>
+                        <label><input type="radio" name="q3" value="오는"> ② 오는</label>
+                        <label><input type="radio" name="q3" value="오면"> ③ 오면</label>
+                        <label><input type="radio" name="q3" value="오고"> ④ 오고</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>4. 저는 한국 친구에게서 ( ) 받았어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="선물은"> ① 선물은</label>
+                        <label><input type="radio" name="q4" value="선물을"> ② 선물을</label>
+                        <label><input type="radio" name="q4" value="선물도"> ③ 선물도</label>
+                        <label><input type="radio" name="q4" value="선물이"> ④ 선물이</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>5. 김치를 ( ) 먹어 본 적이 있어요?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="만들기"> ① 만들기</label>
+                        <label><input type="radio" name="q5" value="만드면"> ② 만드면</label>
+                        <label><input type="radio" name="q5" value="만들어"> ③ 만들어</label>
+                        <label><input type="radio" name="q5" value="만들어서"> ④ 만들어서</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>6. 나는 그 영화를 ( ) 세 번이나 봤다.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="재미없지만"> ① 재미없지만</label>
+                        <label><input type="radio" name="q6" value="재미있어서"> ② 재미있어서</label>
+                        <label><input type="radio" name="q6" value="재미있고"> ③ 재미있고</label>
+                        <label><input type="radio" name="q6" value="재미있으면"> ④ 재미있으면</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>7. 오늘은 날씨가 너무 ( ) 밖에 나가지 않을 거예요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="춥다면"> ① 춥다면</label>
+                        <label><input type="radio" name="q7" value="춥고"> ② 춥고</label>
+                        <label><input type="radio" name="q7" value="추워서"> ③ 추워서</label>
+                        <label><input type="radio" name="q7" value="추울 때"> ④ 추울 때</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>8. 방이 너무 ( ) 청소를 해야 해요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="더러워서"> ① 더러워서</label>
+                        <label><input type="radio" name="q8" value="깨끗해서"> ② 깨끗해서</label>
+                        <label><input type="radio" name="q8" value="비싸서"> ③ 비싸서</label>
+                        <label><input type="radio" name="q8" value="조용해서"> ④ 조용해서</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>9. 저는 내일 친구를 ( ) 영화를 볼 거예요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="만나러"> ① 만나러</label>
+                        <label><input type="radio" name="q9" value="만나고"> ② 만나고</label>
+                        <label><input type="radio" name="q9" value="만나면"> ③ 만나면</label>
+                        <label><input type="radio" name="q9" value="만나다가"> ④ 만나다가</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>10. 저는 ( ) 커피를 마시지 않아요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="아침마저"> ① 아침마저</label>
+                        <label><input type="radio" name="q10" value="아침부터"> ② 아침부터</label>
+                        <label><input type="radio" name="q10" value="아침까지"> ③ 아침까지</label>
+                        <label><input type="radio" name="q10" value="아침에만"> ④ 아침에만</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>11. 배가 고파서 라면을 ( ).</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="먹어야 해요"> ① 먹어야 해요</label>
+                        <label><input type="radio" name="q11" value="먹을 수 있어요"> ② 먹을 수 있어요</label>
+                        <label><input type="radio" name="q11" value="먹고 싶어요"> ③ 먹고 싶어요</label>
+                        <label><input type="radio" name="q11" value="먹고 있어요"> ④ 먹고 있어요</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>12. 아침에 늦게 일어나는 ( ) 수업에 늦었어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="탓에"> ① 탓에</label>
+                        <label><input type="radio" name="q12" value="덕분에"> ② 덕분에</label>
+                        <label><input type="radio" name="q12" value="때문에"> ③ 때문에</label>
+                        <label><input type="radio" name="q12" value="대신에"> ④ 대신에</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>13. 너무 배가 고파서 밥을 ( ) 먹었어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="빨리"> ① 빨리</label>
+                        <label><input type="radio" name="q13" value="모두"> ② 모두</label>
+                        <label><input type="radio" name="q13" value="다"> ③ 다</label>
+                        <label><input type="radio" name="q13" value="많이"> ④ 많이</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>14. 이곳은 ( ) 사진을 찍지 마세요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="조용하기"> ① 조용하기</label>
+                        <label><input type="radio" name="q14" value="조용하니까"> ② 조용하니까</label>
+                        <label><input type="radio" name="q14" value="조용해서"> ③ 조용해서</label>
+                        <label><input type="radio" name="q14" value="조용히"> ④ 조용히</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>15. 저는 한국 드라마 ( ) 좋아해요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="보기를"> ① 보기를</label>
+                        <label><input type="radio" name="q15" value="보는 것을"> ② 보는 것을</label>
+                        <label><input type="radio" name="q15" value="보려고"> ③ 보려고</label>
+                        <label><input type="radio" name="q15" value="보고"> ④ 보고</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>16. 친구가 늦어서 ( ) 기다렸어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="한 시간이나"> ① 한 시간이나</label>
+                        <label><input type="radio" name="q16" value="한 시간하고"> ② 한 시간하고</label>
+                        <label><input type="radio" name="q16" value="한 시간뿐"> ③ 한 시간뿐</label>
+                        <label><input type="radio" name="q16" value="한 시간도"> ④ 한 시간도</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>17. 나는 그에게 선물을 ( ) 받았다.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="주고"> ① 주고</label>
+                        <label><input type="radio" name="q17" value="주고는"> ② 주고는</label>
+                        <label><input type="radio" name="q17" value="받고는"> ③ 받고는</label>
+                        <label><input type="radio" name="q17" value="받기는"> ④ 받기는</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>18. 이 노래는 ( ) 좋아서 매일 듣고 있어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="너무"> ① 너무</label>
+                        <label><input type="radio" name="q18" value="정말"> ② 정말</label>
+                        <label><input type="radio" name="q18" value="아주"> ③ 아주</label>
+                        <label><input type="radio" name="q18" value="가장"> ④ 가장</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>19. 어제는 비가 많이 와서 ( ) 못 갔어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="소풍을"> ① 소풍을</label>
+                        <label><input type="radio" name="q19" value="소풍이"> ② 소풍이</label>
+                        <label><input type="radio" name="q19" value="소풍에"> ③ 소풍에</label>
+                        <label><input type="radio" name="q19" value="소풍은"> ④ 소풍은</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>20. 저는 오늘 아침에 ( ) 커피를 마셨어요.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="밥을 먹고"> ① 밥을 먹고</label>
+                        <label><input type="radio" name="q20" value="밥을 먹으면서"> ② 밥을 먹으면서</label>
+                        <label><input type="radio" name="q20" value="밥을 먹으러"> ③ 밥을 먹으러</label>
+                        <label><input type="radio" name="q20" value="밥을 먹기"> ④ 밥을 먹기</label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" id="submitBtn">Hoàn thành bài kiểm tra</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="section3" class="section">
+            <h2>Phần 3: Kết quả và Đánh giá</h2>
+            <div id="results-container">
+                <p><strong>Họ và tên:</strong> <span id="displayName"></span></p>
+                <p><strong>Tuổi:</strong> <span id="displayAge"></span></p>
+                <p><strong>Tổng điểm:</strong> <span id="score">0</span> / 20</p>
+                <p id="evaluation" class="evaluation-text"></p>
+                <div class="button-group">
+                    <button id="copyBtn" class="copy-btn">Sao chép kết quả</button>
+                    <button id="showAnswersBtn">Xem đáp án chi tiết</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="section4" class="section">
+            <h2>Phần 4: Đáp án chi tiết</h2>
+            <div id="answers-container">
+                <ul id="results-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: "배우고", q2: "책을 읽다가", q3: "오니까", q4: "선물을",
+            q5: "만들어", q6: "재미있어서", q7: "추워서", q8: "더러워서",
+            q9: "만나고", q10: "아침부터", q11: "먹고 싶어요", q12: "탓에",
+            q13: "다", q14: "조용히", q15: "보는 것을", q16: "한 시간이나",
+            q17: "받기는", q18: "너무", q19: "소풍을", q20: "밥을 먹고"
+        };
+        
+        const startBtn = document.getElementById('startBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const showAnswersBtn = document.getElementById('showAnswersBtn');
+
+        const section1 = document.getElementById('section1');
+        const section2 = document.getElementById('section2');
+        const section3 = document.getElementById('section3');
+        const section4 = document.getElementById('section4');
+
+        const nameInput = document.getElementById('name');
+        const ageInput = document.getElementById('age');
+        const displayName = document.getElementById('displayName');
+        const displayAge = document.getElementById('displayAge');
+        
+        const quizForm = document.getElementById('quizForm');
+        const scoreSpan = document.getElementById('score');
+        const resultsList = document.getElementById('results-list');
+        const evaluationText = document.getElementById('evaluation');
+
+        // Chuyển từ Phần 1 sang Phần 2
+        startBtn.addEventListener('click', function() {
+            if (nameInput.value.trim() === '' || ageInput.value.trim() === '') {
+                alert('Vui lòng nhập đầy đủ thông tin trước khi bắt đầu!');
+                return;
+            }
+            section1.style.display = 'none';
+            section2.style.display = 'block';
+            displayName.textContent = nameInput.value;
+            displayAge.textContent = ageInput.value;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Chuyển từ Phần 2 sang Phần 3 và 4, đồng thời chấm điểm
+        quizForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let score = 0;
+            resultsList.innerHTML = ''; 
+
+            for (let i = 1; i <= 20; i++) {
+                const questionName = `q${i}`;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                const listItem = document.createElement('li');
+                const userAnswer = selectedOption ? selectedOption.value : "Chưa trả lời";
+                const isCorrect = userAnswer === correctAnswers[questionName];
+
+                if (isCorrect) {
+                    score++;
+                    listItem.classList.add('correct');
+                    listItem.innerHTML = `Câu ${i}: <strong>Đúng</strong> - "${userAnswer}"`;
+                } else {
+                    listItem.classList.add('incorrect');
+                    listItem.innerHTML = `Câu ${i}: <strong>Sai</strong> - Đáp án của bạn: "${userAnswer}". Đáp án đúng: "${correctAnswers[questionName]}"`;
+                }
+                
+                resultsList.appendChild(listItem);
+            }
+            
+            scoreSpan.textContent = score;
+
+            // Hiển thị đánh giá dựa trên điểm số
+            if (score >= 15) {
+                evaluationText.textContent = "Kết quả: Tốt! 🌟";
+                evaluationText.className = "evaluation-text good";
+            } else if (score >= 10) {
+                evaluationText.textContent = "Kết quả: Trung bình.";
+                evaluationText.className = "evaluation-text average";
+            } else {
+                evaluationText.textContent = "Kết quả: Cần cải thiện. 😥";
+                evaluationText.className = "evaluation-text poor";
+            }
+
+            section2.style.display = 'none';
+            section3.style.display = 'block';
+            section4.style.display = 'none'; // Ẩn phần 4 ban đầu
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Hiển thị Phần 4 khi nhấn nút "Xem đáp án chi tiết"
+        showAnswersBtn.addEventListener('click', function() {
+            section4.style.display = 'block';
+            window.scrollTo({ top: section4.offsetTop, behavior: 'smooth' });
+        });
+
+        // Sao chép kết quả
+        copyBtn.addEventListener('click', function() {
+            let resultText = `--- BÀI THI TIẾNG HÀN ---\n\n`;
+            resultText += `Họ và tên: ${displayName.textContent}\n`;
+            resultText += `Tuổi: ${displayAge.textContent}\n\n`;
+            resultText += `Tổng điểm: ${scoreSpan.textContent}/20\n\n`;
+            resultText += `Đánh giá: ${evaluationText.textContent}\n\n`;
+            resultText += `--- CHI TIẾT ĐÁP ÁN ---\n`;
+            
+            const listItems = resultsList.querySelectorAll('li');
+            listItems.forEach(item => {
+                const text = item.textContent.replace(' - ', '\nĐáp án của bạn: ');
+                resultText += text + '\n';
+            });
+            
+            navigator.clipboard.writeText(resultText).then(() => {
+                alert('Kết quả đã được sao chép vào bộ nhớ tạm. Vui lòng dán và gửi cho người quản lý!');
+            }).catch(err => {
+                console.error('Không thể sao chép văn bản: ', err);
+                alert('Có lỗi xảy ra khi sao chép. Vui lòng thử lại.');
+            });
+        });
+    </script>
+</body>
+</html>
